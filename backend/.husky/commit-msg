@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# First check conventional commit format (blocking)
+npx --no -- commitlint --edit $1
+
+# Then check grammar (non-blocking, just warnings)
+node .husky/grammar-check.js $1
