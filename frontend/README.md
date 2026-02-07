@@ -1,6 +1,6 @@
-# Roadtrix Frontend
+# sqltary Frontend
 
-React frontend for creating and managing nodes in Roadtrix.
+React frontend for creating and managing nodes in sqltary.
 
 ## Features
 
