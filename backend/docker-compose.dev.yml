@@ -9,7 +9,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: mongodb://mongo:27017/roadtrix?replicaSet=rs0
+      DATABASE_URL: mongodb://mongo:27017/sqltary?replicaSet=rs0
       NODE_ENV: development
       PORT: "3000"
     volumes:

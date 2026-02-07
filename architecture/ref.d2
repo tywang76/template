@@ -1,0 +1,247 @@
+# D2 Reference Guide
+# Documentation: https://d2lang.com
+
+# ====================
+# BASIC SHAPES
+# ====================
+
+# Simple shape (default: rectangle)
+rectangle: Rectangle
+
+# Shape with explicit type
+oval: Oval {
+  shape: oval
+}
+
+cylinder: Database {
+  shape: cylinder
+}
+
+cloud: Cloud Service {
+  shape: cloud
+}
+
+hexagon: Hexagon {
+  shape: hexagon
+}
+
+diamond: Decision {
+  shape: diamond
+}
+
+# ====================
+# CONNECTIONS
+# ====================
+
+# Basic arrow
+rectangle -> oval: connects to
+
+# Bidirectional
+oval <-> cylinder: two-way
+
+# Dotted line
+cylinder --> cloud: dotted {
+  style.stroke-dash: 3
+}
+
+# Multiple connections from one node
+cloud -> hexagon
+cloud -> diamond
+
+# ====================
+# CONTAINERS (Groups)
+# ====================
+
+frontend: Frontend {
+  react: React App {
+    shape: rectangle
+    link: https://react.dev
+  }
+
+  nextjs: Next.js {
+    shape: rectangle
+    link: https://nextjs.org
+  }
+
+  react -> nextjs: uses
+}
+
+backend: Backend {
+  api: API Server {
+    shape: rectangle
+  }
+
+  auth: Auth Service {
+    shape: rectangle
+  }
+
+  api -> auth: validates
+}
+
+# Container connections
+frontend.react -> backend.api: HTTP/REST
+
+# ====================
+# HYPERLINKS
+# ====================
+
+docs: Documentation {
+  shape: page
+  link: https://d2lang.com/docs
+}
+
+github: GitHub Repo {
+  shape: rectangle
+  link: https://github.com
+}
+
+# Local file link
+local_doc: Local README {
+  link: ./README.md
+}
+
+# ====================
+# STYLING
+# ====================
+
+styled_box: Styled Box {
+  style: {
+    fill: "#e1f5fe"
+    stroke: "#0288d1"
+    stroke-width: 2
+    border-radius: 8
+    font-color: "#01579b"
+    bold: true
+  }
+}
+
+warning_box: Warning {
+  style: {
+    fill: "#fff3e0"
+    stroke: "#ff9800"
+    stroke-width: 2
+  }
+}
+
+success_box: Success {
+  style: {
+    fill: "#e8f5e9"
+    stroke: "#4caf50"
+  }
+}
+
+# ====================
+# ICONS
+# ====================
+
+# Using built-in icons (requires internet)
+aws: AWS {
+  icon: https://icons.terrastruct.com/aws%2F_Group%20Icons%2FAWS-Cloud-alt_light-bg.svg
+}
+
+# ====================
+# SEQUENCE DIAGRAM
+# ====================
+
+sequence: Sequence Example {
+  shape: sequence_diagram
+
+  user: User
+  server: Server
+  db: Database
+
+  user -> server: Request
+  server -> db: Query
+  db -> server: Result
+  server -> user: Response
+}
+
+# ====================
+# SQL TABLE
+# ====================
+
+users: Users Table {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  name: varchar(255)
+  email: varchar(255) {constraint: unique}
+  created_at: timestamp
+}
+
+# ====================
+# CLASS DIAGRAM
+# ====================
+
+Animal: Animal {
+  shape: class
+
+  name: string
+  age: int
+
+  speak(): void
+  move(): void
+}
+
+Dog: Dog {
+  shape: class
+
+  breed: string
+
+  bark(): void
+}
+
+Animal <- Dog: extends
+
+# ====================
+# GRID LAYOUT
+# ====================
+
+grid_example: Grid Layout {
+  grid-rows: 2
+  grid-columns: 3
+
+  cell1: Cell 1
+  cell2: Cell 2
+  cell3: Cell 3
+  cell4: Cell 4
+  cell5: Cell 5
+  cell6: Cell 6
+}
+
+# ====================
+# MARKDOWN / CODE
+# ====================
+
+explanation: |md
+  ## Markdown Support
+
+  - Bullet points work
+  - **Bold** and *italic*
+  - `inline code`
+|
+
+code_block: |go
+  func main() {
+    fmt.Println("Hello, D2!")
+  }
+|
+
+# ====================
+# TOOLTIP
+# ====================
+
+with_tooltip: Hover Me {
+  tooltip: This is additional information shown on hover
+}
+
+# ====================
+# MULTIPLE LABELS
+# ====================
+
+multi: Node {
+  label: Primary Label
+  # Secondary connections can have their own labels
+}
+
+multi -> docs: "first path"
+multi -> github: "second path"

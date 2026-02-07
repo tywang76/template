@@ -7,11 +7,11 @@ RUN apt-get update -y && apt-get install -y openssl libssl3 && rm -rf /var/lib/a
 # Copy source and assets required to compile the API
 COPY tsconfig.json ./
 COPY src ./src
-COPY openapi.json ./openapi.json
 COPY prisma ./prisma
 
 # Install all dependencies (including dev) for build and OpenAPI generation
 COPY package.json package-lock.json ./
+ENV HUSKY=0
 RUN npm ci
 
 # Generate Prisma Client

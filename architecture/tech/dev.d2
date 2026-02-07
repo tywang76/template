@@ -1,0 +1,13 @@
+direction: right
+
+use-case: {
+  label: "use-case/"
+  service_interface
+  port_interface
+}
+
+architecture -> use-case
+user-story -> domain/
+
+service -- use-case.service_interface
+port -- use-case.port_interface
