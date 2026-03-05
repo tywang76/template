@@ -8,47 +8,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Stock {
+model Item {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
-  stock String @unique
-  kbar  KBar[]
-
-  @@map("stocks")
-}
-
-model KBar {
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  ts      DateTime
-  open    String
-  high    String
-  low     String
-  close   String
-  volume  String
-  amount  String
-  stockId String   @db.ObjectId
-  Stock   Stock    @relation(fields: [stockId], references: [id])
-
-  @@index([stockId, ts])
-  @@map("kbars")
-}
-
-model Cb {
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  code    String   @unique
-  name    String
-  DueDate String?
-  cbSeq   CbSeq[]
-
-  @@map("cb")
-}
-
-model CbSeq {
-  id    String   @id @default(auto()) @map("_id") @db.ObjectId
-  ts    DateTime
-  key   String
+  name  String
   value String
-  cbId  String   @db.ObjectId
-  cb    Cb       @relation(fields: [cbId], references: [id])
 
-  @@map("cbSeq")
+  @@map("items")
 }

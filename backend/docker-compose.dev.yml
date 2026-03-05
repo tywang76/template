@@ -1,7 +1,9 @@
 version: "3.9"
+name: ${APP_NAME}
 
 services:
   backend:
+    container_name: ${APP_NAME}-backend
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,13 +11,12 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: mongodb://mongo:27017/sqltary?replicaSet=rs0
+      DATABASE_URL: mongodb://mongo:27017/${APP_NAME}?replicaSet=rs0
       NODE_ENV: development
       PORT: "3000"
     volumes:
       # Mount source code for hot reload
       - ./src:/app/src
-      - ./openapi.json:/app/openapi.json
       - ./tsconfig.json:/app/tsconfig.json
       - ./prisma:/app/prisma
       - ./nodemon.json:/app/nodemon.json
@@ -27,6 +28,7 @@ services:
 
   mongo:
     image: mongo:4.4.6
+    container_name: ${APP_NAME}-mongo
     restart: unless-stopped
     ports:
       - "27017:27017"

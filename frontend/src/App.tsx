@@ -1,13 +1,13 @@
-import { MAReportTable } from './components/MAReportTable';
+import { ItemList } from './components/ItemList';
 import './App.css';
 
 function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>sqltary - MA Report</h1>
+        <h1>{import.meta.env.VITE_APP_NAME}</h1>
       </header>
-      <MAReportTable />
+      <ItemList />
     </div>
   );
 }

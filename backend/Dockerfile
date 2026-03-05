@@ -9,7 +9,7 @@ COPY tsconfig.json ./
 COPY src ./src
 COPY prisma ./prisma
 
-# Install all dependencies (including dev) for build and OpenAPI generation
+# Install all dependencies (including dev) for build
 COPY package.json package-lock.json ./
 ENV HUSKY=0
 RUN npm ci
@@ -18,7 +18,7 @@ RUN npm ci
 RUN npx prisma generate
 
 # Build the application
-RUN npm run ci:builder
+RUN npm run build
 
 FROM node:20-bookworm-slim AS runner
 WORKDIR /app
@@ -34,11 +34,6 @@ RUN npm ci --omit=dev
 # Copy Prisma schema and generate client
 COPY prisma ./prisma
 RUN npx prisma generate
-
-# Copy generated spec/artifacts needed for client generation
-COPY --from=builder /app/openapi.json ./openapi.json
-RUN mkdir -p src/generated/client
-RUN npm run ci:runner
 
 # Copy built artifacts
 COPY --from=builder /app/dist ./dist
