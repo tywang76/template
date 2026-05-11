@@ -4,12 +4,12 @@ A full-stack TypeScript template using **Hexagonal (Ports & Adapters) Architectu
 
 ## Stack
 
-| Layer | Tech |
-|---|---|
-| Backend | Node.js, Express 5, TypeScript, fp-ts, Zod, Prisma |
-| Frontend | React 19, Vite, TypeScript |
-| Database | MongoDB (via Prisma) |
-| Tooling | Docker, Husky, Commitlint, Prettier, Nodemon |
+| Layer    | Tech                                               |
+| -------- | -------------------------------------------------- |
+| Backend  | Node.js, Express 5, TypeScript, fp-ts, Zod, Prisma |
+| Frontend | React 19, Vite, TypeScript                         |
+| Database | MongoDB (via Prisma)                               |
+| Tooling  | Docker, Husky, Commitlint, Prettier, Nodemon       |
 
 ---
 
@@ -65,10 +65,11 @@ git init && git add . && git commit -m "init: project from template"
 Edit `backend/.env` — set `APP_NAME` to your project name:
 
 ```
-APP_NAME=my-project
-DATABASE_URL=mongodb://localhost:27017/my-project?replicaSet=rs0
+APP_NAME=qurrency
+DATABASE_URL=mongodb://localhost:27018/qurrency?replicaSet=rs0
 NODE_ENV=development
-PORT=3000
+PORT=3001
+MONGO_PORT=27018
 ```
 
 Edit `frontend/.env` to match:
@@ -98,6 +99,10 @@ This script:
 ```bash
 cd backend
 npm run dev
+```
+- DB Connection String example:
+```
+mongodb://localhost:27018/qurrency?directConnection=true 
 ```
 
 ### 5. Start the frontend
